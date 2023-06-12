@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="https://fontawesome.com/"> -->
+    <title>Document</title>
+</head>
+<body class="font-normal text-2xl  ">
+    <header class="h-80  bg-gray-200 scrol  ">
+        <nav class="flex justify-between text-gray-500  h-10 items-center px-3 ">
+            <div><h4 class="">Calculator</h4></div>
+            <ul class="flex">
+                <li><i class="fa-thin fa-window-minimize"></i>mini</li>
+                <li><i class="fa-thin fa-window-maximize"></i>max</li>
+                <li><i class="fa-thin fa-xmark"></i>close</li>
+            </ul>
+        </nav>
+        <nav class="flex justify-between" >
+            <ul class="flex space-x-4">
+                <li class="px-1 cursor-pointer " > <button id="bar"> three </button> </li>
+                <li class="text-3xl font-bold"><h1 >Standard</h1></li>
+                <li class="hover:border-t-2  hover:border-black"  >top</li>               
+            </ul>
+            <div>history</div>
+        </nav>
+        <div class="text-right mt-20 text-6xl font-bold" id="result">0</div>
+        <div>
+            <ul class="flex justify-between w-full mt-12 pl-10 pr-10  ">
+                <li class="opacity-25">MC</li>
+                <li class="opacity-25">MR</li>
+                <li>M+</li>
+                <li>M-</li>
+                <li>MS</li>
+                <li>M<sup>-</sup></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="bar1">
+            <ul class="grid grid-cols-4 h-130">
+                <li class="all col">%</li>
+                <li class="all col">CE</li>
+                <li class="all col">C</li>
+                <li class="all col">#</li>
+                <li class="all col">1/x</li>
+                <li class="all col">x<sup>2</sup></li>
+                <li class="all col">x<sup>1/2</sup></li>
+                <li class="all col">/</li>
+                <li class="all num">7</li>
+                <li class="all num">8</li>
+                <li class="all num">9</li>
+                <li class="all col">*</li>
+                <li class="all num">4</li>
+                <li class="all num">5</li>
+                <li class="all num">6</li>
+                <li class="all col">-</li>
+                <li class="all num">1</li>
+                <li class="all num">2</li>
+                <li class="all num">3</li>
+                <li class="all col">+</li>
+                <li class="all ">+/-</li>
+                <li class="all num">0</li>
+                <li class="all ">.</li>
+                <li class="all bg-gray-400">=</li>
+            </ul>
+        </div>
+    </main>
+    <div>
+        <ul class="pl-4 side shadow-lg shadow-gray-500 border-t-2 border-gray-200 bg-gray-200 w-96 absolute top-10 translate-x-0 box-content h-150 overflow-scroll hidden" id="side">
+            <li  class="cursor-pointer bar1" id="bar1">three</li>
+            <li>Calculator</li>
+            <li class="bor"> <i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor">Converter</li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="bor"><i>icon</i> <i>Standard</i> </li>
+            <li class="sticky bor  bottom-0 "><i>icon</i> <i>About</i> </li>
+        </ul>
+    </div>
+    <div id="prev"></div>
+    <div id="curr"></div>
+<script>
+    let bar = document.getElementById("bar")
+    var side = document.querySelector(".side")
+    var prev = document.getElementById("prev")
+    var curr = document.getElementById("curr")
+    document.getElementById("bar").addEventListener("click",()=>{
+        if(side.style.display="none"){
+         side.setAttribute('style','display:block;')              
+        }
+    });   
+    let bar1 = document.getElementById("bar1")
+    bar1.addEventListener("click",()=>{
+        side.style.display="none"
+    }) 
+    let que = Array.from(document.getElementsByClassName("all"))
+    var l = " "
+    // var p =" "
+    var p=" "
+    var opr= ""
+    // document.getElementById("result").innerText=" "
+    que.forEach((element) => {
+        function name() {
+                 console.log(p)
+                 console.log(l) 
+                 console.log(opr)  
+                 p.replace("0","")              
+                 if(opr==="+"){
+                    document.getElementById("result").innerText= parseInt(p)+parseInt(l)
+                    p=" "
+                    l=" "
+                 }
+                 else if(opr==="-"){
+
+                    document.getElementById("result").innerText= parseInt(p)-parseInt(l)
+                    p=" "
+                    l=" "
+                 }
+                 else if(opr==="*"){
+                    document.getElementById("result").innerText= parseInt(p)*parseInt(l)
+                    p=" "
+                    l=" "
+                 }
+                 else if(opr==="/"){
+                    document.getElementById("result").innerText= parseInt(p)/parseInt(l)
+                    p=" "
+                    l=" "
+                 }
+            }
+           
+       
+        element.addEventListener("click",()=>{
+            
+            
+            if((element.innerText==="*")||(element.innerText==="-")||(element.innerText==="+")||(element.innerText==="/")){
+                // let i =l.join("")
+                // console.log(l)
+                p = l.slice()
+                l =" "
+                opr = element.innerText.slice()
+                // console.log(opr)
+                
+                document.getElementById("result").innerText +=(element.innerText)
+                
+            }
+            // else if(element.innerText==="-"){
+            //     console.log(l)
+            //     p = l
+            //     var j = parseInt(l)-parseInt(element)
+            //     l =" "
+            // }else if(element.innerText==="+"){
+            //     console.log(l)
+            //     p = l.slice()
+            //     console.log(p)
+            //     var j = parseInt(l)+parseInt(element)
+            //     l =" "
+            // }else if(element.innerText==="/"){
+            //     console.log(l)
+            //     p = l
+            //     var j = parseInt(l)/parseInt(element)
+            //     l =" "
+            // }
+            else if(element.innerText==="="){
+                // var result =parseInt(p)+parseInt(l)
+                // document.getElementById("result").innerText=name()
+                name()
+                
+            }
+            else if(element.innerText==="C"){
+                l=""
+                p=""
+                document.getElementById("result").innerText=0
+
+            }
+            else{
+                document.getElementById("result").innerText.replace("0","")
+                l =element.innerText+l
+                document.getElementById("result").innerText =l
+            }
+        })
+        
+    });
+    console.log(l)
+    // function jo(){
+    //    console.log(l.join("")) 
+    
+         
+                
+                
+</script>    
+</body>
+</html>

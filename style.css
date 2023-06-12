@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+    .bor{
+        @apply border border-black space-x-4 pl-2 p-2 hover:bg-gray-400
+    }
+@tailwind utilities;
+@layer components{
+    .all{
+        @apply border text-center flex text-3xl content-center hover:bg-slate-400 border-zinc-300 items-center justify-center ;
+
+    }
+    .num{
+        @apply font-bold
+    }
+    .col{
+        @apply bg-gray-100
+    }
+}
